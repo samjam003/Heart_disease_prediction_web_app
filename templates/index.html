@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Heart Disease Prediction</title>
+
+    <!-- Custom fonts for this template-->
+
+	<link rel="stylesheet" href="{{ url_for('static', filename='/vendor/fontawesome-free/css/all.min.css') }}">
+
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
+
+    <!-- Custom styles for this template-->
+	<link rel="stylesheet" href="{{ url_for('static', filename='/css/sb-admin-2.min.css') }}">
+
+</head>
+
+<body id="page-top">
+
+
+                <!-- Begin Page Content -->
+                <div class="container-fluid">
+<br>
+<nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+
+    <!-- Sidebar Toggle (Topbar) -->
+    <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+        <i class="fa fa-bars"></i>
+    </button>
+
+    <!-- Topbar Search -->
+
+        <div class="input-group text-">
+            <h1 class="h3 mb-0 text-success">Heart Disease Test Form</h1>
+
+            
+        </div>
+ 
+
+    <!-- Topbar Navbar -->
+    <ul class="navbar-nav ml-auto">
+
+        <!-- Nav Item - Search Dropdown (Visible Only XS) -->
+        <li class="nav-item dropdown no-arrow d-sm-none">
+            <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button"
+                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="fas fa-search fa-fw"></i>
+            </a>
+            <!-- Dropdown - Messages -->
+            
+        <div class="topbar-divider d-none d-sm-block"></div>
+
+        <!-- Nav Item - User Information -->
+        <li class="nav-item dropdown no-arrow">
+            <a class="nav-link dropdown-toggle" href="http://127.0.0.1/hmss" id="userDropdown" ">
+                
+                <i class="fas fa-home"></i>
+            </a>
+           
+        </li>
+
+    </ul>
+
+</nav>
+
+                    <!-- Page Heading -->
+                    <div class="card  border-bottom-danger">
+                                <div class="card-body text-danger">
+                                    <center>This Resul Is Not 100% True</center>
+                                </div>
+                            </div>
+                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                        <h1 class="h3 mb-0 text-gray-800"></h1>
+                        
+                    </div>
+                    <form action = "{{url_for('predict')}}" method ="POST" >
+                        <fieldset>
+                        <legend></legend><br>
+                          <div class="card card-body" >
+                              <div class="form-group  row">
+                                <div class="col-sm-3">
+                                    <label for="age">Age</label>
+                                    <input type="number" class="form-control" id="age" name="age" required>
+                                </div>
+                                <div class="col-sm-3">
+                                    <label for="sex">Sex</label>
+                                    <select class="form-control" id="sex"  name="sex" required>
+                                      <option disabled selected value> -- Select an Option -- </option>
+                                      <option value = "0">Male</option>
+                                      <option value = "1">Female</option>
+                                    </select>
+                               </div>
+                              </div>
+                              <br>
+                              <div class="form-group  row">
+                                  <div class="col-sm">
+                                    <label for="cp">Chest Pain Type</label>
+                                    <select class="form-control" id="cp" name = "cp" required>
+                                      <option disabled selected value> -- Select an Option -- </option>
+                                      <option value = "0">Typical Angina</option>
+                                      <option value = "1">Atypical Angina</option>
+                                      <option value = "2">Non-anginal Pain</option>
+                                      <option value = "3">Asymptomatic</option>
+                                    </select>
+                                  </div>
+                                  <div class="col-sm">
+                                    <label for="trestbps">Resting Blood Pressure in mm Hg</label>
+                                    <input type="number" class="form-control" id="trestbps" name="trestbps"  required>
+                                  </div>
+                                  <div class="col-sm">
+                                    <label for="chol">Serum Cholestoral in mg/dl</label>
+                                    <input type="number" class="form-control" id="chol" name="chol" required>
+                                  </div>
+                                  <div class="col-sm">
+                                    <label for="fbs">Fasting Blood Sugar > 120 mg/dl</label>
+                                    <select class="form-control" id="fbs" name="fbs" required>
+                                      <option disabled selected value> -- Select an Option -- </option>
+                                      <option value = "0">False</option>
+                                      <option value = "1">True</option>
+                                    </select>
+                                </div>
+                              </div>
+                              
+                              <br>
+                              <div class="form-group row">
+                                    <div class="col-sm">
+                                        <label for="restecg">Resting ECG Results </label>
+                                        <select class="form-control" id="restecg" name="restecg" required>
+                                          <option disabled selected value> -- Select an Option -- </option>
+                                          <option value = "0">Normal</option>
+                                          <option value = "1">Having ST-T wave abnormality  </option>
+                                          <option value = "2"> Probable or definite left ventricular hypertrophy  </option>
+                                        </select>
+                                      </div>
+                                      <div class="col-sm">
+                                        <label for="thalach">Maximum Heart Rate</label>
+                                        <input type="number" class="form-control" id="thalach" name="thalach" required>
+                                      </div>
+                                      <div class="col-sm">
+                                        <label for="exang">ST Depression Induced</label>
+                                        <input type="number" step="any" class="form-control" id="exang" name="exang" required>
+                                      </div>
+                                      <div class="col-sm">
+                                        <label for="exang">Exercise Induced Angina </label>
+                                        <select class="form-control" id="oldpeak" name="oldpeak" required>
+                                          <option disabled selected value> -- Select an Option -- </option>
+                                          <option value = "0">No</option>
+                                          <option value = "1">Yes</option>
+                                        </select>
+                                      </div>
+                                  </div>
+                                  <br>
+                                  <div class="form-group  row">
+                                  <div class="col-sm">
+                                    <label for="slope">Slope of the Peak Exercise ST Segment </label>
+                                    <select class="form-control" id="slope" name="slope" required>
+                                      <option disabled selected value> -- Select an Option -- </option>
+                                      <option value = "0">Upsloping</option>
+                                      <option value = "1">Flat</option>
+                                      <option value = "2">Downsloping</option>
+                                    </select>
+                                  </div>
+                                  <div class="col-sm">
+                                    <label for="ca">Number of Vessels Colored by Flourosopy</label>
+                                    <select class="form-control" id="ca" name = "ca" required>
+                                      <option disabled selected value> -- Select an Option -- </option>
+                                      <option value = "0">0</option>
+                                      <option value = "1">1</option>
+                                      <option value = "2">2</option>
+                                      <option value = "3">3</option>
+                                    </select>
+                                  </div>
+                                  <div class="col-sm">
+                                    <label for="thal">Thalassemia</label>
+                                    <select class="form-control" id="thal" name = "thal" required>
+                                      <option disabled selected value> -- Select an Option -- </option>
+                                      <option value = "3">Normal</option>
+                                      <option value = "6">Fixed defect</option>
+                                      <option value = "7">Reversable defect</option>
+                                    </select>
+                                  </div>
+                              </div>
+                              <br>
+                              <div class="form-group col-sm-12">
+                                <input class="btn btn-success" type="submit" value="Result">
+                              </div>
+                              
+                              <!--Prediction Result-->
+                              <div id ="result">
+                                    <strong style="color:red">{{result}}</strong>
+                             </div>
+                             </div>
+                     </fieldset>
+                    </form>
+                </div>
+                <!-- /.container-fluid -->
+
+            </div>
+            <!-- End of Main Content -->
+
+            <!-- Footer -->
+            <footer class="sticky-footer bg-white">
+                <div class="container my-auto">
+                    <div class="copyright text-center my-auto">
+                      <a href="https://samjam003.github.io/portfolio/">  <span>Copyright &copy; SMJ  </span> </a>
+                    </div>
+                </div>
+            </footer>
+            <!-- End of Footer -->
+
+        </div>
+        <!-- End of Content Wrapper -->
+
+    </div>
+    <!-- End of Page Wrapper -->
+
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+    </a>
+
+    
+
+
+
+</body>
+
+</html>
